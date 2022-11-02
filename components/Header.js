@@ -1,5 +1,6 @@
 import React from "react";
 import { View, Text, Image, StyleSheet, Button } from "react-native";
+import files from '../constants/files'
 
 const Header = (props) => {
   return (
@@ -7,7 +8,7 @@ const Header = (props) => {
       <View style= {styles.titleView} >
         <Text style={styles.title} >{props.title}</Text>
       </View>
-      <Image source={require('../assets/menu-icon.png')} />
+      <Image source={files.icons.menuIcon} />
     </View>
   );
 };
