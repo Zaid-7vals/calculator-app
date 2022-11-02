@@ -11,12 +11,17 @@ import {
   TouchableWithoutFeedback,
 } from "react-native";
 
+import { Chip, withTheme, lightColors } from "@rneui/themed";
 import files from "../constants/files";
 import style from "../constants/style";
 
 const Card = (props) => {
   const [sheets, setSheets] = useState(0);
   const [sheetIcon, setSheetIcon] = useState(files.images.sheet1);
+
+  const paperTypes = ["DIN A", "DIN B", "DIN C", "DIN D"];
+  const paperTypes2 = ["US Formate", "JIS B"];
+
 
   const updateSheetIconHandler = () => {
     if (sheets >= 50) {
@@ -60,45 +65,33 @@ const Card = (props) => {
     <TouchableWithoutFeedback onPress={dismissKeyboardHandler}>
       <>
         <View style={styles.topContainer}>
-          <Image source={sheetIcon} />
-          <View style={{ alignItems: "center" }}>
-            <View style={styles.counter}>
-              <View style={{ justifyContent: "space-between" }}>
-                <View style={{ alignItems: "center" }}>
-                  <TextInput
-                    style={styles.sheetsCounter}
-                    keyboardType="number-pad"
-                    onChangeText={changeSheetCountHandler}
-                    value={sheets.toString()}
-                  />
-                </View>
-                <Text style={{ color: "white" }}>sheets</Text>
-              </View>
-            </View>
-            <TouchableOpacity
-              style={styles.button}
-              activeOpacity={0.5}
-              onPress={incrementSheetHandler}
-            >
-              <Image source={files.icons.plus} />
-            </TouchableOpacity>
-            <TouchableOpacity
-              style={styles.button2}
-              activeOpacity={0.5}
-              onPress={decrementSheetHandler}
-            >
-              <Image source={files.icons.minus} />
-            </TouchableOpacity>
+          <View style={styles.chipRow} >
+          {paperTypes.map(() => <Chip
+              title="DIN A"
+              containerStyle={{ marginVertical: 15, marginHorizontal: 10 }}
+            />)}
+            
+          </View>
+          <View style={styles.chipRow}>
+            <Chip
+              title="US Formate"
+              containerStyle={{ marginVertical: 15, marginHorizontal: 10 }}
+            />
+            <Chip
+              title="JIS B"
+              containerStyle={{ marginVertical: 15, marginHorizontal: 10 }}
+            />
           </View>
         </View>
 
         <View style={styles.bottomContainer}>
-          <View style={styles.label}>
-            <Text style={styles.labelText}>4.99 g</Text>
-          </View>
-          <View style={styles.label}>
-            <Text>Per Copy</Text>
-          </View>
+          
+          <Button title="A2" style={styles.button} />
+          <Button title="A3" />
+          <Button title="A4" />
+          <Button title="A5" />
+          <Button title="A6" />
+          <Button title="Din Lang" />
         </View>
       </>
     </TouchableWithoutFeedback>
@@ -107,29 +100,19 @@ const Card = (props) => {
 
 const styles = StyleSheet.create({
   topContainer: {
-    flexDirection: "row",
-    alignItems: "center",
-    justifyContent: "space-around",
-    height: 200,
+    alignItems: "flex-start",
+    justifyContent: "center",
+    height: 150,
     borderTopLeftRadius: 20,
     borderTopRightRadius: 20,
-    marginTop: 5,
+    marginTop: 20,
     marginHorizontal: 20,
-    backgroundColor: style.topSection.topContainerBackgroundColor,
-    shadowColor: "#000000",
-    shadowOffset: {
-      width: 0,
-      height: 5,
-    },
-    shadowOpacity: 0.36,
-    shadowRadius: 6.68,
-
-    elevation: 11,
+    backgroundColor: "#979797",
   },
-  counter: {
-    backgroundColor: style.topSection.counterBackgroundColor,
-    height: 100,
-    width: 100,
+  chipRow: {
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "flex-start",
     borderRadius: 20,
     justifyContent: "center",
     alignItems: "center",
@@ -137,21 +120,12 @@ const styles = StyleSheet.create({
   bottomContainer: {
     flexDirection: "row",
     alignItems: "center",
-    justifyContent: "space-between",
-    backgroundColor: "#6FDBFF",
+    justifyContent: "flex-start",
+    backgroundColor: "#EFF0F5",
     height: 80,
     marginHorizontal: 20,
     borderBottomLeftRadius: 20,
     borderBottomRightRadius: 20,
-    shadowColor: "#000",
-    shadowOffset: {
-      width: 0,
-      height: 5,
-    },
-    shadowOpacity: 0.36,
-    shadowRadius: 6.68,
-
-    elevation: 11,
   },
   label: {
     marginHorizontal: 20,
@@ -161,8 +135,7 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
   },
   button: {
-    marginTop: -10,
-    position: "absolute",
+    backgroundColor: "white"
   },
   button2: {
     marginTop: 90,
