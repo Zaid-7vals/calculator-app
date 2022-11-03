@@ -29,35 +29,38 @@ const Card = (props) => {
       setSheetIcon(files.images.sheet1);
     }
   };
-  const incrementSheetHandler = (props) => {
+  const incrementSheetHandler = () => {
     setSheets(sheets + 1);
     updateSheetIconHandler();
     Keyboard.dismiss();
+    props.onChangeQuantity.bind(this, sheets);
   };
-  const decrementSheetHandler = (props) => {
+  const decrementSheetHandler = () => {
     if (sheets <= 0) {
       return;
     }
     setSheets(sheets - 1);
     updateSheetIconHandler();
     Keyboard.dismiss();
+    props.onChangeQuantity.bind(this, sheets);
   };
-  const changeSheetCountHandler = (props) => {
-    if (props !== "") {
-      setSheets(parseInt(props, 10));
+  const changeSheetCountHandler = (sheetString) => {
+    if (sheetString !== "") {
+      setSheets(parseInt(sheetString, 10));
       updateSheetIconHandler();
     } else {
       setSheets(0);
       updateSheetIconHandler();
     }
+    props.onChangeQuantity.bind(this, sheets);
   };
 
-  const dismissKeyboardHandler = () => {
+  const dismissKeyboard = () => {
     Keyboard.dismiss();
   };
 
   return (
-    <TouchableWithoutFeedback onPress={dismissKeyboardHandler}>
+    <TouchableWithoutFeedback onPress={dismissKeyboard}>
       <>
         <View style={styles.topContainer}>
           <Image source={sheetIcon} />
@@ -94,7 +97,7 @@ const Card = (props) => {
 
         <View style={styles.bottomContainer}>
           <View style={styles.label}>
-            <Text style={styles.labelText}>4.99 g</Text>
+            <Text style={styles.labelText}>{props.weight} g</Text>
           </View>
           <View style={styles.label}>
             <Text>Per Copy</Text>

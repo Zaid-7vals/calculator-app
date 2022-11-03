@@ -2,33 +2,35 @@ const PAPERFORMATS = [
     {
         key: 1,
         label: "A2",
-        gram: 1
+        weight: 4
     },
     {
         key: 2,
         label: "A3",
-        gram: 14
+        weight: 6
     },
     {
         key: 3,
         label: "A4",
-        gram: 16
+        weight: 8
     },
     {
         key: 4,
         label: "A5",
-        gram: 16
+        weight: 10
     },
     {
         key: 5,
         label: "A6",
-        gram: 12
+        weight: 12
     },
     {
         key: 6,
         label: "DIN LANG",
-        gram: 11
+        weight: 14
     }
+
+    
 ]
 
 export default PAPERFORMATS;

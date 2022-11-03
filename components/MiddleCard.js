@@ -22,48 +22,52 @@ const Card = (props) => {
   const paperTypes2 = PAPERTYPES.slice(4);
   const paperFormats = PAPERFORMATS;
 
-  const changeSheetCountHandler = (props) => {
-    if (props !== "") {
-      setSheets(parseInt(props, 10));
-      updateSheetIconHandler();
-    } else {
-      setSheets(0);
-      updateSheetIconHandler();
+  const [selected, setSelected] = useState(-1);
+
+  const handleOnButtonSelect = (props) => {
+    if (selected == -1) {
+     
     }
   };
+  const removeSelectedButton = (props) => {};
 
-  const dismissKeyboardHandler = () => {
+  const dismissKeyboard = () => {
     Keyboard.dismiss();
   };
 
   return (
-    <TouchableWithoutFeedback onPress={dismissKeyboardHandler}>
+    <TouchableWithoutFeedback onPress={dismissKeyboard}>
       <>
         <View style={styles.topContainer}>
           <View style={styles.chipRow}>
-            {paperTypes.map((props) => (
+            {paperTypes.map((value) => (
               <Chip
-                title={props["label"]}
+                title={value["label"]}
                 containerStyle={{ marginVertical: 15, marginHorizontal: 10 }}
+                onPress={props.updateType.bind(this, value)}
               />
             ))}
           </View>
           <View style={styles.chipRow}>
-            {paperTypes2.map((props) => (
+            {paperTypes2.map((value) => (
               <Chip
-                title={props["label"]}
+                title={value["label"]}
                 containerStyle={{ marginVertical: 15, marginHorizontal: 10 }}
-                color="blue"
-                onPress={dismissKeyboardHandler}
+                onPress={props.updateType.bind(this, value)}
               />
             ))}
           </View>
         </View>
 
         <View style={styles.bottomContainer}>
-        {paperFormats.map((props) => (
-        <Button title={props["label"]} style={styles.button} color="grey" />
-      ))}
+          {paperFormats.map((value) => (
+            <Button
+              title={value["label"]}
+              style={styles.button}
+              color="grey"
+              onPress={props.updateFormat.bind(this, value)}
+            />
+          ))}
         </View>
       </>
     </TouchableWithoutFeedback>

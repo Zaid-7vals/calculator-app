@@ -2,32 +2,32 @@ const PAPERTYPES = [
     {
         key: 1,
         label: "DIN A",
-        gram: 1
+        weight: 3
     },
     {
         key: 2,
         label: "DIN B",
-        gram: 14
+        weight: 6
     },
     {
         key: 3,
         label: "DIN C",
-        gram: 16
+        weight: 9
     },
     {
         key: 4,
         label: "DIN D",
-        gram: 16
+        weight: 12
     },
     {
         key: 5,
         label: "US Formate",
-        gram: 12
+        weight: 15
     },
     {
         key: 6,
         label: "JIS B",
-        gram: 11
+        weight: 18
     }
 ]
 
