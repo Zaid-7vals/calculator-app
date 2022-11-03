@@ -14,39 +14,14 @@ import {
 import { Chip, withTheme, lightColors } from "@rneui/themed";
 import files from "../constants/files";
 import style from "../constants/style";
+import PAPERFORMATS from "../constants/paperFormats";
+import PAPERTYPES from "../constants/paperTypes";
 
 const Card = (props) => {
-  const [sheets, setSheets] = useState(0);
-  const [sheetIcon, setSheetIcon] = useState(files.images.sheet1);
+  const paperTypes = PAPERTYPES.slice(0, 4);
+  const paperTypes2 = PAPERTYPES.slice(4);
+  const paperFormats = PAPERFORMATS;
 
-  const paperTypes = ["DIN A", "DIN B", "DIN C", "DIN D"];
-  const paperTypes2 = ["US Formate", "JIS B"];
-
-
-  const updateSheetIconHandler = () => {
-    if (sheets >= 50) {
-      setSheetIcon(files.images.sheet4);
-    } else if (sheets >= 25) {
-      setSheetIcon(files.images.sheet3);
-    } else if (sheets >= 10) {
-      setSheetIcon(files.images.sheet2);
-    } else {
-      setSheetIcon(files.images.sheet1);
-    }
-  };
-  const incrementSheetHandler = (props) => {
-    setSheets(sheets + 1);
-    updateSheetIconHandler();
-    Keyboard.dismiss();
-  };
-  const decrementSheetHandler = (props) => {
-    if (sheets <= 0) {
-      return;
-    }
-    setSheets(sheets - 1);
-    updateSheetIconHandler();
-    Keyboard.dismiss();
-  };
   const changeSheetCountHandler = (props) => {
     if (props !== "") {
       setSheets(parseInt(props, 10));
@@ -65,33 +40,30 @@ const Card = (props) => {
     <TouchableWithoutFeedback onPress={dismissKeyboardHandler}>
       <>
         <View style={styles.topContainer}>
-          <View style={styles.chipRow} >
-          {paperTypes.map(() => <Chip
-              title="DIN A"
-              containerStyle={{ marginVertical: 15, marginHorizontal: 10 }}
-            />)}
-            
+          <View style={styles.chipRow}>
+            {paperTypes.map((props) => (
+              <Chip
+                title={props["label"]}
+                containerStyle={{ marginVertical: 15, marginHorizontal: 10 }}
+              />
+            ))}
           </View>
           <View style={styles.chipRow}>
-            <Chip
-              title="US Formate"
-              containerStyle={{ marginVertical: 15, marginHorizontal: 10 }}
-            />
-            <Chip
-              title="JIS B"
-              containerStyle={{ marginVertical: 15, marginHorizontal: 10 }}
-            />
+            {paperTypes2.map((props) => (
+              <Chip
+                title={props["label"]}
+                containerStyle={{ marginVertical: 15, marginHorizontal: 10 }}
+                color="blue"
+                onPress={dismissKeyboardHandler}
+              />
+            ))}
           </View>
         </View>
 
         <View style={styles.bottomContainer}>
-          
-          <Button title="A2" style={styles.button} />
-          <Button title="A3" />
-          <Button title="A4" />
-          <Button title="A5" />
-          <Button title="A6" />
-          <Button title="Din Lang" />
+        {paperFormats.map((props) => (
+        <Button title={props["label"]} style={styles.button} color="grey" />
+      ))}
         </View>
       </>
     </TouchableWithoutFeedback>
@@ -107,7 +79,7 @@ const styles = StyleSheet.create({
     borderTopRightRadius: 20,
     marginTop: 20,
     marginHorizontal: 20,
-    backgroundColor: "#979797",
+    backgroundColor: "#F8F9FB",
   },
   chipRow: {
     flexDirection: "row",
@@ -135,7 +107,7 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
   },
   button: {
-    backgroundColor: "white"
+    backgroundColor: "white",
   },
   button2: {
     marginTop: 90,
