@@ -6,63 +6,110 @@ import {
   Button,
   Image,
   TouchableOpacity,
+  TextInput,
+  Keyboard,
+  TouchableWithoutFeedback,
 } from "react-native";
+
 import files from "../constants/files";
+import style from "../constants/style";
+
 const Card = (props) => {
   const [sheets, setSheets] = useState(0);
-  const incrementSheetHandler = (props) => {
-    setSheets(sheets + 1);
+  const [sheetIcon, setSheetIcon] = useState(files.images.sheet1);
+
+  const updateSheetIconHandler = () => {
+    if (sheets >= 50) {
+      setSheetIcon(files.images.sheet4);
+    } else if (sheets >= 25) {
+      setSheetIcon(files.images.sheet3);
+    } else if (sheets >= 10) {
+      setSheetIcon(files.images.sheet2);
+    } else {
+      setSheetIcon(files.images.sheet1);
+    }
   };
-  const decrementSheetHandler = (props) => {
+  const incrementSheetHandler = () => {
+    setSheets(sheets + 1);
+    updateSheetIconHandler();
+    Keyboard.dismiss();
+    props.onChangeQuantity.bind(this, sheets);
+  };
+  const decrementSheetHandler = () => {
     if (sheets <= 0) {
       return;
     }
     setSheets(sheets - 1);
+    updateSheetIconHandler();
+    Keyboard.dismiss();
+    props.onChangeQuantity.bind(this, sheets);
+  };
+  const changeSheetCountHandler = (sheetString) => {
+    if (sheetString !== "") {
+      setSheets(parseInt(sheetString, 10));
+      updateSheetIconHandler();
+    } else {
+      setSheets(0);
+      updateSheetIconHandler();
+    }
+    props.onChangeQuantity.bind(this, sheets);
+  };
+
+  const dismissKeyboard = () => {
+    Keyboard.dismiss();
   };
 
   return (
-    <>
-      <View style={styles.container}>
-        <Image source={require("../assets/sheets/sheet4.png")} />
-        <View style={{ alignItems: "center" }}>
-          <View style={styles.counter}>
-            <View style={{ justifyContent: "space-between" }}>
-              <View style={{ alignItems: "center" }}>
-                <Text style={{ fontSize: 25, color: "white" }}>{sheets}</Text>
+    <TouchableWithoutFeedback onPress={dismissKeyboard}>
+      <>
+        <View style={styles.topContainer}>
+          <Image source={sheetIcon} />
+          <View style={{ alignItems: "center" }}>
+            <View style={styles.counter}>
+              <View style={{ justifyContent: "space-between" }}>
+                <View style={{ alignItems: "center" }}>
+                  <TextInput
+                    style={styles.sheetsCounter}
+                    keyboardType="number-pad"
+                    onChangeText={changeSheetCountHandler}
+                    value={sheets.toString()}
+                  />
+                </View>
+                <Text style={{ color: "white" }}>sheets</Text>
               </View>
-              <Text style={{ color: "white" }}>sheets</Text>
             </View>
+            <TouchableOpacity
+              style={styles.button}
+              activeOpacity={0.5}
+              onPress={incrementSheetHandler}
+            >
+              <Image source={files.icons.plus} />
+            </TouchableOpacity>
+            <TouchableOpacity
+              style={styles.button2}
+              activeOpacity={0.5}
+              onPress={decrementSheetHandler}
+            >
+              <Image source={files.icons.minus} />
+            </TouchableOpacity>
           </View>
-          <TouchableOpacity
-            style={styles.button}
-            activeOpacity={0.5}
-            onPress={incrementSheetHandler}
-          >
-            <Image source={files.icons.plus} />
-          </TouchableOpacity>
-          <TouchableOpacity
-            style={styles.button2}
-            activeOpacity={0.5}
-            onPress={decrementSheetHandler}
-          >
-            <Image source={files.icons.minus} />
-          </TouchableOpacity>
         </View>
-      </View>
-      <View style={styles.footer}>
-        <View style={styles.label}>
-          <Text style={styles.labelText}>4.99 g</Text>
+
+        <View style={styles.bottomContainer}>
+          <View style={styles.label}>
+            <Text style={styles.labelText}>{props.weight} g</Text>
+          </View>
+          <View style={styles.label}>
+            <Text>Per Copy</Text>
+          </View>
         </View>
-        <View style={styles.label}>
-          <Text>Per Copy</Text>
-        </View>
-      </View>
-    </>
+      </>
+    </TouchableWithoutFeedback>
   );
 };
 
 const styles = StyleSheet.create({
-  container: {
+  topContainer: {
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "space-around",
@@ -71,7 +118,7 @@ const styles = StyleSheet.create({
     borderTopRightRadius: 20,
     marginTop: 5,
     marginHorizontal: 20,
-    backgroundColor: "#37CEFF",
+    backgroundColor: style.topSection.topContainerBackgroundColor,
     shadowColor: "#000000",
     shadowOffset: {
       width: 0,
@@ -83,14 +130,14 @@ const styles = StyleSheet.create({
     elevation: 11,
   },
   counter: {
-    backgroundColor: "rgba(74, 81, 113, 0.2)",
+    backgroundColor: style.topSection.counterBackgroundColor,
     height: 100,
     width: 100,
     borderRadius: 20,
     justifyContent: "center",
     alignItems: "center",
   },
-  footer: {
+  bottomContainer: {
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "space-between",
@@ -123,6 +170,10 @@ const styles = StyleSheet.create({
   button2: {
     marginTop: 90,
     position: "absolute",
+  },
+  sheetsCounter: {
+    fontSize: 25,
+    color: "white",
   },
 });
 
