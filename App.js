@@ -7,12 +7,16 @@ import LinearGradient from "react-native-linear-gradient";
 import Header from "./components/Header";
 import Card from "./components/Card";
 import MiddleCard from "./components/MiddleCard";
+import BottomCard from "./components/BottomCard";
 
 export default function App() {
   const [totalWeight, setTotalWeight] = useState(1);
   const [formatWeight, setFormatWeight] = useState(1);
   const [typeWeight, setTypeWeight] = useState(1);
   const [sheets, setSheets] = useState(0);
+  const [length, setLength] = useState(50);
+  const [width, setWidth] = useState(50);
+  const [gram, setGram] = useState(50);
 
   const updateWeight = () => {
     if (formatWeight === 0 || typeWeight == 0) {
@@ -32,6 +36,9 @@ export default function App() {
   const handleOnQuantityChange = (props) => {
     setSheets(props);
   };
+  const handleOnLengthChange = (props) => {
+
+  }
   useEffect(updateWeight);
   return (
     <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
@@ -42,6 +49,7 @@ export default function App() {
           updateType={handleOnTypePress}
           updateFormat={handleOnFormatPress}
         />
+        <BottomCard/>
       </View>
     </TouchableWithoutFeedback>
   );
