@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
   View,
   Text,
@@ -28,31 +28,26 @@ const Card = (props) => {
     } else {
       setSheetIcon(files.images.sheet1);
     }
+    props.onChangeQuantity(sheets);
   };
+  useEffect(updateSheetIconHandler);
   const incrementSheetHandler = () => {
     setSheets(sheets + 1);
-    updateSheetIconHandler();
     Keyboard.dismiss();
-    props.onChangeQuantity.bind(this, sheets);
   };
   const decrementSheetHandler = () => {
     if (sheets <= 0) {
       return;
     }
     setSheets(sheets - 1);
-    updateSheetIconHandler();
     Keyboard.dismiss();
-    props.onChangeQuantity.bind(this, sheets);
   };
   const changeSheetCountHandler = (sheetString) => {
     if (sheetString !== "") {
       setSheets(parseInt(sheetString, 10));
-      updateSheetIconHandler();
     } else {
       setSheets(0);
-      updateSheetIconHandler();
     }
-    props.onChangeQuantity.bind(this, sheets);
   };
 
   const dismissKeyboard = () => {
@@ -60,51 +55,49 @@ const Card = (props) => {
   };
 
   return (
-    <TouchableWithoutFeedback onPress={dismissKeyboard}>
-      <>
-        <View style={styles.topContainer}>
-          <Image source={sheetIcon} />
-          <View style={{ alignItems: "center" }}>
-            <View style={styles.counter}>
-              <View style={{ justifyContent: "space-between" }}>
-                <View style={{ alignItems: "center" }}>
-                  <TextInput
-                    style={styles.sheetsCounter}
-                    keyboardType="number-pad"
-                    onChangeText={changeSheetCountHandler}
-                    value={sheets.toString()}
-                  />
-                </View>
-                <Text style={{ color: "white" }}>sheets</Text>
+    <>
+      <View style={styles.topContainer}>
+        <Image source={sheetIcon} />
+        <View style={{ alignItems: "center" }}>
+          <View style={styles.counter}>
+            <View style={{ justifyContent: "space-between" }}>
+              <View style={{ alignItems: "center" }}>
+                <TextInput
+                  style={styles.sheetsCounter}
+                  keyboardType="number-pad"
+                  onChangeText={changeSheetCountHandler}
+                  value={sheets.toString()}
+                />
               </View>
+              <Text style={{ color: "white" }}>sheets</Text>
             </View>
-            <TouchableOpacity
-              style={styles.button}
-              activeOpacity={0.5}
-              onPress={incrementSheetHandler}
-            >
-              <Image source={files.icons.plus} />
-            </TouchableOpacity>
-            <TouchableOpacity
-              style={styles.button2}
-              activeOpacity={0.5}
-              onPress={decrementSheetHandler}
-            >
-              <Image source={files.icons.minus} />
-            </TouchableOpacity>
           </View>
+          <TouchableOpacity
+            style={styles.button}
+            activeOpacity={0.5}
+            onPress={incrementSheetHandler}
+          >
+            <Image source={files.icons.plus} />
+          </TouchableOpacity>
+          <TouchableOpacity
+            style={styles.button2}
+            activeOpacity={0.5}
+            onPress={decrementSheetHandler}
+          >
+            <Image source={files.icons.minus} />
+          </TouchableOpacity>
         </View>
+      </View>
 
-        <View style={styles.bottomContainer}>
-          <View style={styles.label}>
-            <Text style={styles.labelText}>{props.weight} g</Text>
-          </View>
-          <View style={styles.label}>
-            <Text>Per Copy</Text>
-          </View>
+      <View style={styles.bottomContainer}>
+        <View style={styles.label}>
+          <Text style={styles.labelText}>{props.weight} g</Text>
         </View>
-      </>
-    </TouchableWithoutFeedback>
+        <View style={styles.label}>
+          <Text>Per Copy</Text>
+        </View>
+      </View>
+    </>
   );
 };
 

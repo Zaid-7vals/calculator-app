@@ -36,7 +36,7 @@ const Card = (props) => {
   };
 
   return (
-    <TouchableWithoutFeedback onPress={dismissKeyboard}>
+
       <>
         <View style={styles.topContainer}>
           <View style={styles.chipRow}>
@@ -70,7 +70,7 @@ const Card = (props) => {
           ))}
         </View>
       </>
-    </TouchableWithoutFeedback>
+
   );
 };
 
