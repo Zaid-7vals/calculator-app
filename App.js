@@ -18,7 +18,7 @@ import BottomCard from "./components/BottomCard";
 
 export default function App() {
   const [totalWeight, setTotalWeight] = useState(1);
-  const [formatWeight, setFormatWeight] = useState(1);
+  const [formatWeight, setFormatWeight] = useState({ length: 1, width: 1 }); //stores length and width based on paper size i.e. A4
   const [typeWeight, setTypeWeight] = useState(1);
   const [sheets, setSheets] = useState(0);
   const [length, setLength] = useState(50);
@@ -26,13 +26,13 @@ export default function App() {
   const [gram, setGram] = useState(50);
 
   const updateWeight = () => {
-    setTotalWeight(formatWeight * typeWeight * sheets);
+    setTotalWeight(formatWeight["length"] * formatWeight["width"] * typeWeight * sheets);
     //console.log(sheets, formatWeight, typeWeight);
     console.log(length, width, gram);
   };
 
   const handleOnFormatPress = (props) => {
-    setFormatWeight(props["weight"]);
+    setFormatWeight(props["dimension"]);
   };
   const handleOnTypePress = (props) => {
     setTypeWeight(props["weight"]);
@@ -62,7 +62,7 @@ export default function App() {
         <BottomCard
           onChangeLength={handleOnLengthChange}
           onChangeWidth={handleOnWidthChange}
-          onChangeGram={handleOnGramChange}
+          onChangeGrammage={handleOnGramChange}
         />
       </View>
     </TouchableWithoutFeedback>

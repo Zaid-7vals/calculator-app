@@ -12,12 +12,14 @@ import {
 } from "react-native";
 
 import { Chip, withTheme, lightColors } from "@rneui/themed";
+
 import files from "../constants/files";
 import style from "../constants/style";
 import PAPERFORMATS from "../constants/paperFormats";
 import PAPERTYPES from "../constants/paperTypes";
 
 const Card = (props) => {
+
   const paperTypes = PAPERTYPES.slice(0, 4);
   const paperTypes2 = PAPERTYPES.slice(4);
   const paperFormats = PAPERFORMATS;
@@ -26,7 +28,6 @@ const Card = (props) => {
 
   const handleOnButtonSelect = (props) => {
     if (selected == -1) {
-     
     }
   };
   const removeSelectedButton = (props) => {};
@@ -36,41 +37,42 @@ const Card = (props) => {
   };
 
   return (
-
-      <>
-        <View style={styles.topContainer}>
-          <View style={styles.chipRow}>
-            {paperTypes.map((value) => (
-              <Chip
-                title={value["label"]}
-                containerStyle={{ marginVertical: 15, marginHorizontal: 10 }}
-                onPress={props.onChangeType.bind(this, value)}
-              />
-            ))}
-          </View>
-          <View style={styles.chipRow}>
-            {paperTypes2.map((value) => (
-              <Chip
-                title={value["label"]}
-                containerStyle={{ marginVertical: 15, marginHorizontal: 10 }}
-                onPress={props.onChangeType.bind(this, value)}
-              />
-            ))}
-          </View>
-        </View>
-
-        <View style={styles.bottomContainer}>
-          {paperFormats.map((value) => (
-            <Button
+    <>
+      <View style={styles.topContainer}>
+        <View style={styles.chipRow}>
+          {paperTypes.map((value) => (
+            <Chip
               title={value["label"]}
-              style={styles.button}
+              containerStyle={{ marginVertical: 15, marginHorizontal: 10 }}
+              onPress={props.onChangeType.bind(this, value)}
               color="grey"
-              onPress={props.onChangeFormat.bind(this, value)}
             />
           ))}
         </View>
-      </>
+        <View style={styles.chipRow}>
+          {paperTypes2.map((value) => (
+            <Chip
+              title={value["label"]}
+              containerStyle={{ marginVertical: 15, marginHorizontal: 10 }}
+              onPress={props.onChangeType.bind(this, value)}
+              color="grey"
+              
+            />
+          ))}
+        </View>
+      </View>
 
+      <View style={styles.bottomContainer}>
+        {paperFormats.map((value) => (
+          <Button
+            title={value["label"]}
+            style={styles.button}
+            color="grey"
+            onPress={props.onChangeFormat.bind(this, value)}
+          />
+        ))}
+      </View>
+    </>
   );
 };
 
@@ -112,6 +114,7 @@ const styles = StyleSheet.create({
   },
   button: {
     backgroundColor: "white",
+    fontFamily: "Montserrat_400Regular"
   },
   button2: {
     marginTop: 90,

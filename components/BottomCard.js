@@ -12,13 +12,13 @@ const BottomCard = (props) => {
   return (
     <View style={styles.container}>
       <View style={styles.topContainer}>
-        <Text>Length:</Text>
-        <Text>{length}</Text>
+        <Text style={styles.text}>Length:</Text>
+        <Text style={styles.text}>{length} mm</Text>
       </View>
       <Slider
-        style={{ width: "80%" }}
-        minimumValue={0}
-        maximumValue={250}
+        style={{ width: "90%" }}
+        minimumValue={1}
+        maximumValue={500}
         minimumTrackTintColor={style.sliderColor}
         thumbTintColor={style.sliderColor}
         value={length}
@@ -28,13 +28,13 @@ const BottomCard = (props) => {
         }}
       />
       <View style={styles.topContainer}>
-        <Text>Width:</Text>
-        <Text>{width}</Text>
+        <Text style={styles.text}>Width:</Text>
+        <Text style={styles.text}>{width} mm</Text>
       </View>
       <Slider
-        style={{ width: "80%" }}
-        minimumValue={0}
-        maximumValue={250}
+        style={{ width: "90%" }}
+        minimumValue={1}
+        maximumValue={500}
         minimumTrackTintColor={style.sliderColor}
         thumbTintColor={style.sliderColor}
         value={width}
@@ -44,19 +44,19 @@ const BottomCard = (props) => {
         }}
       />
       <View style={styles.topContainer}>
-        <Text>Gram:</Text>
-        <Text>{gram}</Text>
+        <Text style={styles.text}>Gram:</Text>
+        <Text style={styles.text}>{gram} grams</Text>
       </View>
       <Slider
-        style={{ width: "80%" }}
-        minimumValue={0}
-        maximumValue={250}
+        style={{ width: "90%" , marginBottom: 10}}
+        minimumValue={10}
+        maximumValue={1000}
         minimumTrackTintColor={style.sliderColor}
         thumbTintColor={style.sliderColor}
         value={gram}
         onValueChange={(value) => {
           setGram(parseInt(value));
-          props.onChangeGram(parseInt(value));
+          props.onChangeGrammage(parseInt(value));
         }}
       />
     </View>
@@ -74,11 +74,18 @@ const styles = StyleSheet.create({
     backgroundColor: "#3A4163",
   },
   topContainer: {
-    width: "80%",
+    width: "90%",
     marginTop: 10,
     flexDirection: "row",
     justifyContent: "space-between",
   },
+  innerContainer: {
+    marginVertical: 10
+  },
+  text: {
+    fontSize: 17,
+    color: "white"
+  }
 });
 
 export default BottomCard;

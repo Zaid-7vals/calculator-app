@@ -10,6 +10,7 @@ import {
   Keyboard,
   TouchableWithoutFeedback,
 } from "react-native";
+import { Chip, withTheme, lightColors } from "@rneui/themed";
 
 import files from "../constants/files";
 import style from "../constants/style";
