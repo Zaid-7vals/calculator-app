@@ -22,7 +22,10 @@ const BottomCard = (props) => {
         minimumTrackTintColor={style.sliderColor}
         thumbTintColor={style.sliderColor}
         value={length}
-        onValueChange={(value) => setLength(parseInt(value))}
+        onValueChange={(value) => {
+          setLength(parseInt(value));
+          props.onChangeLength(parseInt(value));
+        }}
       />
       <View style={styles.topContainer}>
         <Text>Width:</Text>
@@ -35,7 +38,10 @@ const BottomCard = (props) => {
         minimumTrackTintColor={style.sliderColor}
         thumbTintColor={style.sliderColor}
         value={width}
-        onValueChange={(value) => setWidth(parseInt(value))}
+        onValueChange={(value) => {
+          setWidth(parseInt(value));
+          props.onChangeWidth(parseInt(value));
+        }}
       />
       <View style={styles.topContainer}>
         <Text>Gram:</Text>
@@ -48,7 +54,10 @@ const BottomCard = (props) => {
         minimumTrackTintColor={style.sliderColor}
         thumbTintColor={style.sliderColor}
         value={gram}
-        onValueChange={(value) => setGram(parseInt(value))}
+        onValueChange={(value) => {
+          setGram(parseInt(value));
+          props.onChangeGram(parseInt(value));
+        }}
       />
     </View>
   );
@@ -56,14 +65,13 @@ const BottomCard = (props) => {
 
 const styles = StyleSheet.create({
   container: {
-    
     alignItems: "center",
     justifyContent: "center",
-    borderRadius: 20,
+    borderRadius: style.borderRadius,
     marginTop: 20,
     marginHorizontal: 20,
 
-    backgroundColor: "grey",
+    backgroundColor: "#3A4163",
   },
   topContainer: {
     width: "80%",

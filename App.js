@@ -1,6 +1,13 @@
 import React, { useState, useEffect } from "react";
 import { StatusBar } from "expo-status-bar";
-import { Keyboard, StyleSheet, Text, View, Button, TouchableWithoutFeedback } from "react-native";
+import {
+  Keyboard,
+  StyleSheet,
+  Text,
+  View,
+  Button,
+  TouchableWithoutFeedback,
+} from "react-native";
 import { Chip, withTheme, lightColors } from "@rneui/themed";
 import LinearGradient from "react-native-linear-gradient";
 
@@ -19,12 +26,9 @@ export default function App() {
   const [gram, setGram] = useState(50);
 
   const updateWeight = () => {
-    if (formatWeight === 0 || typeWeight == 0) {
-      console.log("select all values");
-      return;
-    }
     setTotalWeight(formatWeight * typeWeight * sheets);
-    console.log(sheets, formatWeight, typeWeight);
+    //console.log(sheets, formatWeight, typeWeight);
+    console.log(length, width, gram);
   };
 
   const handleOnFormatPress = (props) => {
@@ -37,8 +41,14 @@ export default function App() {
     setSheets(props);
   };
   const handleOnLengthChange = (props) => {
-
-  }
+    setLength(props);
+  };
+  const handleOnWidthChange = (props) => {
+    setWidth(props);
+  };
+  const handleOnGramChange = (props) => {
+    setGram(props);
+  };
   useEffect(updateWeight);
   return (
     <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
@@ -46,10 +56,14 @@ export default function App() {
         <Header title="Paper Calculator" />
         <Card weight={totalWeight} onChangeQuantity={handleOnQuantityChange} />
         <MiddleCard
-          updateType={handleOnTypePress}
-          updateFormat={handleOnFormatPress}
+          onChangeType={handleOnTypePress}
+          onChangeFormat={handleOnFormatPress}
         />
-        <BottomCard/>
+        <BottomCard
+          onChangeLength={handleOnLengthChange}
+          onChangeWidth={handleOnWidthChange}
+          onChangeGram={handleOnGramChange}
+        />
       </View>
     </TouchableWithoutFeedback>
   );

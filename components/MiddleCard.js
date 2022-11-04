@@ -44,7 +44,7 @@ const Card = (props) => {
               <Chip
                 title={value["label"]}
                 containerStyle={{ marginVertical: 15, marginHorizontal: 10 }}
-                onPress={props.updateType.bind(this, value)}
+                onPress={props.onChangeType.bind(this, value)}
               />
             ))}
           </View>
@@ -53,7 +53,7 @@ const Card = (props) => {
               <Chip
                 title={value["label"]}
                 containerStyle={{ marginVertical: 15, marginHorizontal: 10 }}
-                onPress={props.updateType.bind(this, value)}
+                onPress={props.onChangeType.bind(this, value)}
               />
             ))}
           </View>
@@ -65,7 +65,7 @@ const Card = (props) => {
               title={value["label"]}
               style={styles.button}
               color="grey"
-              onPress={props.updateFormat.bind(this, value)}
+              onPress={props.onChangeFormat.bind(this, value)}
             />
           ))}
         </View>
