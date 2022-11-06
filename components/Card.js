@@ -113,15 +113,7 @@ const styles = StyleSheet.create({
     marginTop: 5,
     marginHorizontal: 20,
     backgroundColor: style.topSection.topContainerBackgroundColor,
-    shadowColor: "#000000",
-    shadowOffset: {
-      width: 0,
-      height: 5,
-    },
-    shadowOpacity: 0.36,
-    shadowRadius: 6.68,
-
-    elevation: 11,
+    
   },
   counter: {
     backgroundColor: style.topSection.counterBackgroundColor,
@@ -140,15 +132,7 @@ const styles = StyleSheet.create({
     marginHorizontal: 20,
     borderBottomLeftRadius: 20,
     borderBottomRightRadius: 20,
-    shadowColor: "#000",
-    shadowOffset: {
-      width: 0,
-      height: 5,
-    },
-    shadowOpacity: 0.36,
-    shadowRadius: 6.68,
 
-    elevation: 11,
   },
   label: {
     marginHorizontal: 20,

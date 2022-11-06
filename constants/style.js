@@ -8,6 +8,10 @@ export default {
     counterBackgroundColor: "rgba(74, 81, 113, 0.2)"
   },
   sliderColor: "#37CEFF",
+
+  bottomSection: {
+    sliderWidth: "90%"
+  }
   
 
 };

@@ -4,60 +4,35 @@ import Slider from "@react-native-community/slider";
 
 import files from "../constants/files";
 import style from "../constants/style";
+import PaperSlider from "./PaperSlider";
 
 const BottomCard = (props) => {
   const [length, setLength] = useState(50);
   const [width, setWidth] = useState(50);
   const [gram, setGram] = useState(50);
+  console.log(props.length, props.width, props.gram);
   return (
     <View style={styles.container}>
-      <View style={styles.topContainer}>
-        <Text style={styles.text}>Length:</Text>
-        <Text style={styles.text}>{length} mm</Text>
-      </View>
-      <Slider
-        style={{ width: "90%" }}
-        minimumValue={1}
-        maximumValue={500}
-        minimumTrackTintColor={style.sliderColor}
-        thumbTintColor={style.sliderColor}
-        value={length}
-        onValueChange={(value) => {
-          setLength(parseInt(value));
-          props.onChangeLength(parseInt(value));
-        }}
+      <PaperSlider
+        value={props.gram}
+        label="Gram:"
+        changeValue={setGram}
+        onChangeValue={props.onChangeGrammage}
+        unit="grams"
       />
-      <View style={styles.topContainer}>
-        <Text style={styles.text}>Width:</Text>
-        <Text style={styles.text}>{width} mm</Text>
-      </View>
-      <Slider
-        style={{ width: "90%" }}
-        minimumValue={1}
-        maximumValue={500}
-        minimumTrackTintColor={style.sliderColor}
-        thumbTintColor={style.sliderColor}
-        value={width}
-        onValueChange={(value) => {
-          setWidth(parseInt(value));
-          props.onChangeWidth(parseInt(value));
-        }}
+      <PaperSlider
+        value={props.length}
+        label="Length:"
+        changeValue={setLength}
+        onChangeValue={props.onChangeLength}
+        unit="mm"
       />
-      <View style={styles.topContainer}>
-        <Text style={styles.text}>Gram:</Text>
-        <Text style={styles.text}>{gram} grams</Text>
-      </View>
-      <Slider
-        style={{ width: "90%" , marginBottom: 10}}
-        minimumValue={10}
-        maximumValue={1000}
-        minimumTrackTintColor={style.sliderColor}
-        thumbTintColor={style.sliderColor}
-        value={gram}
-        onValueChange={(value) => {
-          setGram(parseInt(value));
-          props.onChangeGrammage(parseInt(value));
-        }}
+      <PaperSlider
+        value={props.width}
+        label="Width:"
+        changeValue={setWidth}
+        onChangeValue={props.onChangeWidth}
+        unit="mm"
       />
     </View>
   );
@@ -70,22 +45,12 @@ const styles = StyleSheet.create({
     borderRadius: style.borderRadius,
     marginTop: 20,
     marginHorizontal: 20,
-
+    marginBottom: 20,
     backgroundColor: "#3A4163",
   },
-  topContainer: {
-    width: "90%",
-    marginTop: 10,
-    flexDirection: "row",
-    justifyContent: "space-between",
-  },
   innerContainer: {
-    marginVertical: 10
+    marginVertical: 10,
   },
-  text: {
-    fontSize: 17,
-    color: "white"
-  }
 });
 
 export default BottomCard;

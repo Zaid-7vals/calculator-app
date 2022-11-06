@@ -15,14 +15,13 @@ import { Chip, withTheme, lightColors } from "@rneui/themed";
 
 import files from "../constants/files";
 import style from "../constants/style";
+import PAPERSIZES from "../constants/paperSizes";
 import PAPERFORMATS from "../constants/paperFormats";
-import PAPERTYPES from "../constants/paperTypes";
 
 const Card = (props) => {
-
-  const paperTypes = PAPERTYPES.slice(0, 4);
-  const paperTypes2 = PAPERTYPES.slice(4);
-  const paperFormats = PAPERFORMATS;
+  const paperFormats = PAPERFORMATS//.slice(0, 4);
+//   const paperFormats2 = PAPERFORMATS.slice(4);
+  const paperSizes = PAPERSIZES;
 
   const [selected, setSelected] = useState(-1);
 
@@ -40,35 +39,25 @@ const Card = (props) => {
     <>
       <View style={styles.topContainer}>
         <View style={styles.chipRow}>
-          {paperTypes.map((value) => (
+          {paperFormats.map((value) => (
             <Chip
               title={value["label"]}
               containerStyle={{ marginVertical: 15, marginHorizontal: 10 }}
-              onPress={props.onChangeType.bind(this, value)}
+              onPress={props.onChangeFormat.bind(this, value["weight"])}
               color="grey"
             />
           ))}
         </View>
-        <View style={styles.chipRow}>
-          {paperTypes2.map((value) => (
-            <Chip
-              title={value["label"]}
-              containerStyle={{ marginVertical: 15, marginHorizontal: 10 }}
-              onPress={props.onChangeType.bind(this, value)}
-              color="grey"
-              
-            />
-          ))}
-        </View>
+        
       </View>
 
       <View style={styles.bottomContainer}>
-        {paperFormats.map((value) => (
+        {paperSizes.map((value) => (
           <Button
             title={value["label"]}
             style={styles.button}
             color="grey"
-            onPress={props.onChangeFormat.bind(this, value)}
+            onPress={props.onChangeSize.bind(this, value)}
           />
         ))}
       </View>
@@ -91,6 +80,9 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "flex-start",
+    flexWrap: "wrap",
+    //need to define a flex property to puh new row to start
+    alignContent: "space-between",
     borderRadius: 20,
     justifyContent: "center",
     alignItems: "center",
@@ -114,7 +106,7 @@ const styles = StyleSheet.create({
   },
   button: {
     backgroundColor: "white",
-    fontFamily: "Montserrat_400Regular"
+    fontFamily: "Montserrat_400Regular",
   },
   button2: {
     marginTop: 90,
