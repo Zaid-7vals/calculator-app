@@ -10,30 +10,38 @@ const BottomCard = (props) => {
   const [length, setLength] = useState(50);
   const [width, setWidth] = useState(50);
   const [gram, setGram] = useState(50);
-  console.log(props.length, props.width, props.gram);
+  //These 3 states are used to update value inside chip on each value change.
   return (
     <View style={styles.container}>
-      <PaperSlider
-        value={props.gram}
-        label="Gram:"
-        changeValue={setGram}
-        onChangeValue={props.onChangeGrammage}
-        unit="grams"
-      />
-      <PaperSlider
-        value={props.length}
-        label="Length:"
-        changeValue={setLength}
-        onChangeValue={props.onChangeLength}
-        unit="mm"
-      />
-      <PaperSlider
-        value={props.width}
-        label="Width:"
-        changeValue={setWidth}
-        onChangeValue={props.onChangeWidth}
-        unit="mm"
-      />
+      <View style={styles.innerContainer}>
+        <PaperSlider
+          value={props.gram}
+          valueForChip={gram}
+          label="Gram"
+          changeValue={setGram}
+          onChangeValue={props.onChangeGrammage}
+          unit="grams"
+          onButtonChange={props.onFormatPress}
+        />
+        <PaperSlider
+          value={props.length}
+          valueForChip={length}
+          label="Length"
+          changeValue={setLength}
+          onChangeValue={props.onChangeLength}
+          unit="mm"
+          onButtonChange={props.onSizePress}
+        />
+        <PaperSlider
+          value={props.width}
+          valueForChip={width}
+          label="Width"
+          changeValue={setWidth}
+          onChangeValue={props.onChangeWidth}
+          unit="mm"
+          onButtonChange={props.onSizePress}
+        />
+      </View>
     </View>
   );
 };
@@ -50,6 +58,8 @@ const styles = StyleSheet.create({
   },
   innerContainer: {
     marginVertical: 10,
+    //This margin makes the bottomCard's bottom touch the iPhone bar
+    width: "90%",
   },
 });
 

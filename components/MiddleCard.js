@@ -3,63 +3,80 @@ import {
   View,
   Text,
   StyleSheet,
-  Button,
+  FlatList,
   Image,
   TouchableOpacity,
   TextInput,
   Keyboard,
-  TouchableWithoutFeedback,
 } from "react-native";
 
-import { Chip, withTheme, lightColors } from "@rneui/themed";
+import { Chip, Button, withTheme, lightColors } from "@rneui/themed";
 
 import files from "../constants/files";
 import style from "../constants/style";
 import PAPERSIZES from "../constants/paperSizes";
 import PAPERFORMATS from "../constants/paperFormats";
+import { TouchableHighlight } from "react-native-web";
 
 const Card = (props) => {
-  const paperFormats = PAPERFORMATS//.slice(0, 4);
-//   const paperFormats2 = PAPERFORMATS.slice(4);
+  const paperFormats = PAPERFORMATS;
   const paperSizes = PAPERSIZES;
 
-  const [selected, setSelected] = useState(-1);
-
   const handleOnButtonSelect = (props) => {
-    if (selected == -1) {
+    if (selected == false) {
     }
   };
   const removeSelectedButton = (props) => {};
 
-  const dismissKeyboard = () => {
-    Keyboard.dismiss();
-  };
+  const renderPaperSize = ({ item }) => (
+    <Button
+      title={item["label"]}
+      onPress={() => {
+        props.onChangeSize(item);
+        props.onSizePress(item["key"]);
+      }}
+      buttonStyle={styles.sizeButton}
+      titleStyle={
+        item["key"] === props.selectedSize
+          ? styles.selectedButtonText
+          : styles.buttonText
+      }
+    />
+  );
 
   return (
     <>
       <View style={styles.topContainer}>
-        <View style={styles.chipRow}>
-          {paperFormats.map((value) => (
-            <Chip
-              title={value["label"]}
-              containerStyle={{ marginVertical: 15, marginHorizontal: 10 }}
-              onPress={props.onChangeFormat.bind(this, value["weight"])}
-              color="grey"
-            />
-          ))}
-        </View>
-        
+        {paperFormats.map((value) => (
+          <Chip
+            title={value["label"]}
+            containerStyle={styles.chip}
+            onPress={() => {
+              props.onChangeFormat(value["weight"]);
+              props.onFormatPress(value["key"]);
+            }}
+            buttonStyle={
+              value["key"] === props.selectedFormat
+                ? styles.selectedChip
+                : styles.chip
+            }
+            titleStyle={
+              value["key"] === props.selectedFormat
+                ? styles.selectedChipText
+                : styles.chipText
+            }
+          />
+        ))}
       </View>
 
       <View style={styles.bottomContainer}>
-        {paperSizes.map((value) => (
-          <Button
-            title={value["label"]}
-            style={styles.button}
-            color="grey"
-            onPress={props.onChangeSize.bind(this, value)}
-          />
-        ))}
+        <FlatList
+          style={styles.sizeList}
+          horizontal={true}
+          data={paperSizes}
+          renderItem={renderPaperSize}
+          keyExtractor={(item) => item.id}
+        />
       </View>
     </>
   );
@@ -67,55 +84,75 @@ const Card = (props) => {
 
 const styles = StyleSheet.create({
   topContainer: {
-    alignItems: "flex-start",
-    justifyContent: "center",
-    height: 150,
-    borderTopLeftRadius: 20,
-    borderTopRightRadius: 20,
-    marginTop: 20,
-    marginHorizontal: 20,
-    backgroundColor: "#F8F9FB",
-  },
-  chipRow: {
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "flex-start",
     flexWrap: "wrap",
-    //need to define a flex property to puh new row to start
-    alignContent: "space-between",
-    borderRadius: 20,
-    justifyContent: "center",
-    alignItems: "center",
+
+    borderTopLeftRadius: 10,
+    borderTopRightRadius: 10,
+    marginTop: 20,
+    marginHorizontal: 20,
+    backgroundColor: "#F8F9FB",
+    paddingHorizontal: 10,
+    paddingVertical: 20,
   },
+
   bottomContainer: {
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "flex-start",
     backgroundColor: "#EFF0F5",
-    height: 80,
+    height: 45,
     marginHorizontal: 20,
-    borderBottomLeftRadius: 20,
-    borderBottomRightRadius: 20,
-  },
-  label: {
-    marginHorizontal: 20,
-  },
-  labelText: {
-    fontSize: 20,
-    fontWeight: "bold",
+    borderBottomLeftRadius: 10,
+    borderBottomRightRadius: 10,
   },
   button: {
-    backgroundColor: "white",
     fontFamily: "Montserrat_400Regular",
+    height: 15,
   },
-  button2: {
-    marginTop: 90,
-    position: "absolute",
-  },
+
   sheetsCounter: {
     fontSize: 25,
     color: "white",
   },
+  chip: {
+    marginVertical: 5,
+    marginHorizontal: 5,
+    borderRadius: 10,
+    backgroundColor: "#FFFFFF",
+  },
+  chipText: {
+    color: "#B0B5CB",
+    fontSize: 14,
+    fontWeight: "400",
+  },
+  selectedChip: {
+    marginVertical: 5,
+    marginHorizontal: 5,
+    borderRadius: 10,
+    backgroundColor: "#B0B5CB",
+  },
+  selectedChipText: {
+    color: "#FFFFFF",
+    fontSize: 14,
+    fontWeight: "400",
+  },
+  buttonText: {
+    color: "grey",
+    fontSize: 14,
+    fontWeight: "400",
+  },
+  selectedButtonText: {
+    color: style.systemBlueAccent,
+    fontSize: 14,
+    fontWeight: "400",
+  },
+  sizeList: {
+    marginHorizontal: 10,
+  },
+  sizeButton: { backgroundColor: "#EFF0F5" },
 });
 
 export default Card;

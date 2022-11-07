@@ -3,14 +3,11 @@ import {
   View,
   Text,
   StyleSheet,
-  Button,
   Image,
   TouchableOpacity,
   TextInput,
   Keyboard,
-  TouchableWithoutFeedback,
 } from "react-native";
-import { Chip, withTheme, lightColors } from "@rneui/themed";
 
 import files from "../constants/files";
 import style from "../constants/style";
@@ -49,10 +46,6 @@ const Card = (props) => {
     } else {
       setSheets(0);
     }
-  };
-
-  const dismissKeyboard = () => {
-    Keyboard.dismiss();
   };
 
   return (
@@ -112,8 +105,7 @@ const styles = StyleSheet.create({
     borderTopRightRadius: 20,
     marginTop: 5,
     marginHorizontal: 20,
-    backgroundColor: style.topSection.topContainerBackgroundColor,
-    
+    backgroundColor: style.systemBlueAccent,
   },
   counter: {
     backgroundColor: style.topSection.counterBackgroundColor,
@@ -127,12 +119,11 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "space-between",
-    backgroundColor: "#6FDBFF",
+    backgroundColor: style.systemLightBlueAccent,
     height: 80,
     marginHorizontal: 20,
     borderBottomLeftRadius: 20,
     borderBottomRightRadius: 20,
-
   },
   label: {
     marginHorizontal: 20,

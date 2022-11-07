@@ -7,6 +7,7 @@ import {
   View,
   Button,
   TouchableWithoutFeedback,
+  ScrollView,
 } from "react-native";
 
 import Header from "./components/Header";
@@ -20,9 +21,11 @@ export default function App() {
   const [length, setLength] = useState(50);
   const [width, setWidth] = useState(50);
   const [gram, setGram] = useState(50);
+  const [selectedFormatId, setSelectedFormatId] = useState(1);
+  const [selectedSizeId, setSelectedSizeId] = useState(1);
 
   const updateWeight = () => {
-    setTotalWeight(length * width * gram * sheets);
+    setTotalWeight(((length/1000) * (width/1000) * gram * sheets).toFixed(3));
   };
 
   const handleOnSizePress = (props) => {
@@ -36,19 +39,33 @@ export default function App() {
   useEffect(updateWeight);
   return (
     <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
-      <View style={styles.container}>
-        <Header title="Paper Calculator" />
-        <Card weight={totalWeight} onChangeQuantity={handleOnQuantityChange} />
-        <MiddleCard onChangeFormat={setGram} onChangeSize={handleOnSizePress} />
-        <BottomCard
-          onChangeLength={setLength}
-          onChangeWidth={setWidth}
-          onChangeGrammage={setGram}
-          length={length}
-          width={width}
-          gram={gram}
-        />
-      </View>
+      <ScrollView>
+        <View style={styles.container}>
+          <Header title="Paper Calculator" />
+          <Card
+            weight={totalWeight}
+            onChangeQuantity={handleOnQuantityChange}
+          />
+          <MiddleCard
+            onChangeFormat={setGram}
+            onChangeSize={handleOnSizePress}
+            selectedFormat={selectedFormatId}
+            onFormatPress={setSelectedFormatId}
+            selectedSize={selectedSizeId}
+            onSizePress={setSelectedSizeId}
+          />
+          <BottomCard
+            onChangeLength={setLength}
+            onChangeWidth={setWidth}
+            onChangeGrammage={setGram}
+            length={length}
+            width={width}
+            gram={gram}
+            onFormatPress={setSelectedFormatId}
+            onSizePress={setSelectedSizeId}
+          />
+        </View>
+      </ScrollView>
     </TouchableWithoutFeedback>
   );
 }

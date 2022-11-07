@@ -11,20 +11,31 @@ const PaperSlider = (props) => {
     <View style={styles.container}>
       <View style={styles.labelContainer}>
         <Text style={styles.text}>{props.label}</Text>
-        <Chip title={`${props.value} ${props.unit}`} color="grey" />
+        <Chip
+          buttonStyle={styles.chip}
+          title={`${props.valueForChip} ${props.unit}`}
+          color="white"
+          titleStyle={styles.chipText}
+        />
       </View>
+
       <Slider
         style={styles.slider}
         minimumValue={10}
         maximumValue={1000}
-        minimumTrackTintColor={style.sliderColor}
-        thumbTintColor={style.sliderColor}
-        thumbImage={files.images.thumbImage}
+        minimumTrackTintColor={style.systemBlueAccent}
+        thumbTintColor={style.systemBlueAccent}
+        thumbImage={files.images.thumbImage} //ThumbImage not being reflected on AppReload
         value={props.value}
         onValueChange={(value) => {
           props.changeValue(parseInt(value));
+        }}
+        onSlidingComplete={(value) => {
           props.onChangeValue(parseInt(value));
         }}
+        onSlidingStart={(value) => {
+            props.onButtonChange((props.unit === "grams" ? files.customFormatButtonID : files.customSizeButtonID));
+          }}
       />
     </View>
   );
@@ -32,22 +43,27 @@ const PaperSlider = (props) => {
 
 const styles = StyleSheet.create({
   container: {
-    width: "100%",
-    margin: 5,
+    width: style.bottomSection.sliderWidth,
+    margin: 10,
   },
   labelContainer: {
-    width: style.bottomSection.sliderWidth,
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "center",
   },
   text: {
-    fontSize: 17,
+    fontSize: 14,
     color: "white",
+    fontWeight: "700",
   },
-  slider: {
-    width: style.bottomSection.sliderWidth,
-    marginBottom: 10,
+  chip: {
+    borderRadius: 10,
+    backgroundColor: "#4A5171",
+  },
+  chipText: {
+    color: "white",
+    fontSize: 12,
+    fontWeight: "400",
   },
 });
 

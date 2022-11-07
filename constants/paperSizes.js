@@ -46,7 +46,16 @@ const PAPERSIZES = [
             length: 950,
             width: 760
         }
+    },
+    {
+        key: 7,
+        label: "Custom",
+        dimension: {
+            length: 555,
+            width: 555
+        }
     }
+    
 
     
 ]
