@@ -1,4 +1,4 @@
-import { View, Text, StyleSheet, Button } from "react-native";
+import { View, Text, StyleSheet, Button, TextInput } from "react-native";
 import React, { useState } from "react";
 import Slider from "@react-native-community/slider";
 import { Chip, withTheme, lightColors } from "@rneui/themed";
@@ -11,12 +11,18 @@ const PaperSlider = (props) => {
     <View style={styles.container}>
       <View style={styles.labelContainer}>
         <Text style={styles.text}>{props.label}</Text>
-        <Chip
-          buttonStyle={styles.chip}
-          title={`${props.valueForChip} ${props.unit}`}
-          color="white"
-          titleStyle={styles.chipText}
-        />
+        <View style={styles.chip}>
+          <TextInput
+            style={styles.chipText}
+            keyboardType="number-pad"
+            onChangeText={(value) => {
+              props.onChangeValue(parseInt(value));
+              props.changeValue(parseInt(value));
+            }}
+            value={props.valueForChip.toString()}
+          />
+          <Text style={styles.unitLabel}>{props.unit}</Text>
+        </View>
       </View>
 
       <Slider
@@ -34,8 +40,12 @@ const PaperSlider = (props) => {
           props.onChangeValue(parseInt(value));
         }}
         onSlidingStart={(value) => {
-            props.onButtonChange((props.unit === "grams" ? files.customFormatButtonID : files.customSizeButtonID));
-          }}
+          props.onButtonChange(
+            props.unit === "grams"
+              ? files.customFormatButtonID
+              : files.customSizeButtonID
+          );
+        }}
       />
     </View>
   );
@@ -57,10 +67,23 @@ const styles = StyleSheet.create({
     fontWeight: "700",
   },
   chip: {
+    height: 30,
     borderRadius: 10,
     backgroundColor: "#4A5171",
+    flexDirection: "row",
+    justifyContent: "center",
+    alignItems: "center",
   },
   chipText: {
+    marginLeft: 5,
+    marginRight: 1,
+    color: "white",
+    fontSize: 12,
+    fontWeight: "400",
+  },
+  unitLabel: {
+    marginRight: 5,
+    marginLeft: 1,
     color: "white",
     fontSize: 12,
     fontWeight: "400",

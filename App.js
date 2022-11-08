@@ -18,9 +18,9 @@ import BottomCard from "./components/BottomCard";
 export default function App() {
   const [totalWeight, setTotalWeight] = useState(1);
   const [sheets, setSheets] = useState(0);
-  const [length, setLength] = useState(50);
-  const [width, setWidth] = useState(50);
-  const [gram, setGram] = useState(50);
+  const [length, setLength] = useState(650);
+  const [width, setWidth] = useState(430);
+  const [gram, setGram] = useState(300);
   const [selectedFormatId, setSelectedFormatId] = useState(1);
   const [selectedSizeId, setSelectedSizeId] = useState(1);
 
