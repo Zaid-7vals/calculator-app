@@ -12,5 +12,8 @@ export default {
         sheet2: require("../assets/sheets/sheet2.png"),
         sheet3: require("../assets/sheets/sheet3.png"),
         sheet4: require("../assets/sheets/sheet4.png"),
-    }
+        thumbImage: require("../assets/circle.png"),
+    },
+    customFormatButtonID: 7,
+    customSizeButtonID: 7,
 }

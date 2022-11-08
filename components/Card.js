@@ -3,12 +3,10 @@ import {
   View,
   Text,
   StyleSheet,
-  Button,
   Image,
   TouchableOpacity,
   TextInput,
   Keyboard,
-  TouchableWithoutFeedback,
 } from "react-native";
 
 import files from "../constants/files";
@@ -48,10 +46,6 @@ const Card = (props) => {
     } else {
       setSheets(0);
     }
-  };
-
-  const dismissKeyboard = () => {
-    Keyboard.dismiss();
   };
 
   return (
@@ -111,16 +105,7 @@ const styles = StyleSheet.create({
     borderTopRightRadius: 20,
     marginTop: 5,
     marginHorizontal: 20,
-    backgroundColor: style.topSection.topContainerBackgroundColor,
-    shadowColor: "#000000",
-    shadowOffset: {
-      width: 0,
-      height: 5,
-    },
-    shadowOpacity: 0.36,
-    shadowRadius: 6.68,
-
-    elevation: 11,
+    backgroundColor: style.systemBlueAccent,
   },
   counter: {
     backgroundColor: style.topSection.counterBackgroundColor,
@@ -134,20 +119,11 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "space-between",
-    backgroundColor: "#6FDBFF",
+    backgroundColor: style.systemLightBlueAccent,
     height: 80,
     marginHorizontal: 20,
     borderBottomLeftRadius: 20,
     borderBottomRightRadius: 20,
-    shadowColor: "#000",
-    shadowOffset: {
-      width: 0,
-      height: 5,
-    },
-    shadowOpacity: 0.36,
-    shadowRadius: 6.68,
-
-    elevation: 11,
   },
   label: {
     marginHorizontal: 20,
