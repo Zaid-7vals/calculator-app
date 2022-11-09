@@ -29,7 +29,7 @@ const styles = StyleSheet.create({
   container: {
     height:200,
     flexDirection: "column",
-    backgroundColor: "#474E68",
+    backgroundColor: "#DEF5E5",
     justifyContent: "space-around",
     alignItems: "center",
     },

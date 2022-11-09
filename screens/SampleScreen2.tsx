@@ -4,7 +4,7 @@ import { View, Text, StyleSheet, Button } from "react-native";
 const SampleScreen2 = (props) => {
   return (
     <View style={styles.container}>
-      <Text>Mujhay Ghar jana hay!!!!</Text>
+      <Text>Hello from screen 2!!!!</Text>
     </View>
   );
 };
