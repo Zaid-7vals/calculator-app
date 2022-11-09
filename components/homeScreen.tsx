@@ -12,14 +12,14 @@ import TopCard from "./topCard";
 import MiddleCard from "./middleCard";
 import BottomCard from "./bottomCard";
 
-const HomeScreen = (props) => {
-  const [totalWeight, setTotalWeight] = useState(1);
-  const [sheets, setSheets] = useState(0);
-  const [length, setLength] = useState(650);
-  const [width, setWidth] = useState(430);
-  const [gram, setGram] = useState(300);
-  const [selectedFormatId, setSelectedFormatId] = useState(1);
-  const [selectedSizeId, setSelectedSizeId] = useState(1);
+const HomeScreen: React.FC = () => {
+  const [totalWeight, setTotalWeight] = useState<number>(1);
+  const [sheets, setSheets] = useState<number>(0);
+  const [length, setLength] = useState<number>(650);
+  const [width, setWidth] = useState<number>(430);
+  const [gram, setGram] = useState<number>(300);
+  const [selectedFormatId, setSelectedFormatId] = useState<number>(1);
+  const [selectedSizeId, setSelectedSizeId] = useState<number>(1);
 
   const updateWeight = () => {
     setTotalWeight(
@@ -31,8 +31,8 @@ const HomeScreen = (props) => {
     setLength(props["dimension"]["length"]);
     setWidth(props["dimension"]["width"]);
   };
-  const handleOnQuantityChange = (props) => {
-    setSheets(props);
+  const handleOnQuantityChange = (sheets: number) => {
+    setSheets(sheets);
   };
   useEffect(updateWeight);
   return (
@@ -40,7 +40,7 @@ const HomeScreen = (props) => {
       <ScrollView>
         <View style={styles.container}>
           <Header title="Paper Calculator" />
-          <Card
+          <TopCard
             weight={totalWeight}
             onChangeQuantity={handleOnQuantityChange}
           />

@@ -7,7 +7,9 @@ const CORE_COLORS = {
     topContainerColor: "#F8F9FB",
     bottomContainerColor: "#EFF0F5",
   },
-  bottomSection: {},
+  bottomSection: {
+    color: "#3A4163",
+  },
 };
 
 export default CORE_COLORS;
