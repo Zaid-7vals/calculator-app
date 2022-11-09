@@ -11,7 +11,7 @@ import {
 } from "react-native";
 
 import Header from "./components/header";
-import Card from "./components/card";
+import Card from "./components/topCard";
 import MiddleCard from "./components/middleCard";
 import BottomCard from "./components/bottomCard";
 

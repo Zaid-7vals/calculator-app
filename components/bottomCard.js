@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { View, StyleSheet } from "react-native";
+import CORE_THEME from "../constants/coreTheme";
 
 import style from "../constants/style";
 import PaperSlider from "./paperSlider";
@@ -49,8 +50,8 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
     borderRadius: style.borderRadius,
-    marginTop: 20,
-    marginHorizontal: 20,
+    marginTop: CORE_THEME.margin,
+    marginHorizontal: CORE_THEME.margin,
     marginBottom: 20,
     backgroundColor: "#3A4163",
   },

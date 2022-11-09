@@ -8,7 +8,7 @@ import {
 } from "react-native";
 
 import Header from "./header";
-import Card from "./card";
+import TopCard from "./topCard";
 import MiddleCard from "./middleCard";
 import BottomCard from "./bottomCard";
 

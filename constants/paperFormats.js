@@ -40,7 +40,7 @@ const PAPER_FORMATS = [
     label: "Custom",
     weight: 555,
     selected: false
-  }
+  },
 ];
 
 export default PAPER_FORMATS;

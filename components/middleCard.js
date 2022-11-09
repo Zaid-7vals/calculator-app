@@ -6,6 +6,8 @@ import { Chip, Button } from "@rneui/themed";
 import style from "../constants/style";
 import PAPER_SIZES from "../constants/paperSizes";
 import PAPER_FORMATS from "../constants/paperFormats";
+import CORE_THEME from "../constants/coreTheme";
+import CORE_COLORS from "../constants/coreColors";
 
 const Card = (props) => {
   const paperFormats = PAPER_FORMATS;
@@ -72,11 +74,11 @@ const styles = StyleSheet.create({
     justifyContent: "flex-start",
     flexWrap: "wrap",
 
-    borderTopLeftRadius: 10,
-    borderTopRightRadius: 10,
+    borderTopLeftRadius: CORE_THEME.borderRadius,
+    borderTopRightRadius: CORE_THEME.borderRadius,
     marginTop: 20,
-    marginHorizontal: 20,
-    backgroundColor: "#F8F9FB",
+    marginHorizontal: CORE_THEME.margin,
+    backgroundColor: CORE_COLORS["middleSection"]["topContainerColor"],
     paddingHorizontal: 10,
     paddingVertical: 20,
   },
@@ -85,11 +87,11 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "flex-start",
-    backgroundColor: "#EFF0F5",
+    backgroundColor: CORE_COLORS["middleSection"]["bottomContainerColor"],
     height: 45,
-    marginHorizontal: 20,
-    borderBottomLeftRadius: 10,
-    borderBottomRightRadius: 10,
+    marginHorizontal: CORE_THEME.margin,
+    borderBottomLeftRadius: CORE_THEME.borderRadius,
+    borderBottomRightRadius: CORE_THEME.borderRadius,
   },
   button: {
     height: 15,
@@ -102,7 +104,7 @@ const styles = StyleSheet.create({
   chip: {
     marginVertical: 5,
     marginHorizontal: 5,
-    borderRadius: 10,
+    borderRadius: CORE_THEME.borderRadius,
     backgroundColor: "#FFFFFF",
   },
   chipText: {
