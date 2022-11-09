@@ -1,7 +1,6 @@
-import { View, Text, StyleSheet, Button, TextInput } from "react-native";
-import React, { useState } from "react";
+import { View, Text, StyleSheet, TextInput } from "react-native";
+import React from "react";
 import Slider from "@react-native-community/slider";
-import { Chip, withTheme, lightColors } from "@rneui/themed";
 
 import files from "../constants/files";
 import style from "../constants/style";

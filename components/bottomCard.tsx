@@ -1,12 +1,23 @@
 import React, { useState } from "react";
-import { View, Text, StyleSheet, Button } from "react-native";
-import Slider from "@react-native-community/slider";
+import { View, StyleSheet } from "react-native";
+import CORE_COLORS from "../constants/coreColors";
+import CORE_THEME from "../constants/coreTheme";
 
-import files from "../constants/files";
 import style from "../constants/style";
-import PaperSlider from "./PaperSlider";
+import PaperSlider from "./paperSlider";
 
-const BottomCard = (props) => {
+type Props = {
+  onChangeGrammage: (value: number)=>any,
+  onChangeLength: (value: number)=>any,
+  onChangeWidth: (value: number)=>any,
+  onFormatPress: (value: number)=>any,
+  onSizePress: (value: number)=>any,
+  gram: number,
+  length: number,
+  width: number,
+
+}
+const BottomCard: React.FC<Props> = (props: Props) => {
   const [length, setLength] = useState(50);
   const [width, setWidth] = useState(50);
   const [gram, setGram] = useState(50);
@@ -51,10 +62,10 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
     borderRadius: style.borderRadius,
-    marginTop: 20,
-    marginHorizontal: 20,
+    marginTop: CORE_THEME.margin,
+    marginHorizontal: CORE_THEME.margin,
     marginBottom: 20,
-    backgroundColor: "#3A4163",
+    backgroundColor: CORE_COLORS["bottomSection"]["color"],
   },
   innerContainer: {
     marginVertical: 10,

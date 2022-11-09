@@ -11,8 +11,10 @@ import {
 
 import files from "../constants/files";
 import style from "../constants/style";
+import CORE_THEME from "../constants/coreTheme";
+import CORE_COLORS from "../constants/coreColors";
 
-const Card = (props) => {
+const TopCard = (props) => {
   const [sheets, setSheets] = useState(0);
   const [sheetIcon, setSheetIcon] = useState(files.images.sheet1);
 
@@ -101,11 +103,11 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "space-around",
     height: 200,
-    borderTopLeftRadius: 20,
-    borderTopRightRadius: 20,
+    borderTopLeftRadius: CORE_THEME.borderRadius,
+    borderTopRightRadius: CORE_THEME.borderRadius,
     marginTop: 5,
-    marginHorizontal: 20,
-    backgroundColor: style.systemBlueAccent,
+    marginHorizontal: CORE_THEME.margin,
+    backgroundColor: CORE_COLORS["topSection"]["topContainerColor"],
   },
   counter: {
     backgroundColor: style.topSection.counterBackgroundColor,
@@ -119,11 +121,11 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "space-between",
-    backgroundColor: style.systemLightBlueAccent,
+    backgroundColor: CORE_COLORS["topSection"]["bottomContainerColor"],
     height: 80,
-    marginHorizontal: 20,
-    borderBottomLeftRadius: 20,
-    borderBottomRightRadius: 20,
+    marginHorizontal: CORE_THEME.margin,
+    borderBottomLeftRadius: CORE_THEME.borderRadius,
+    borderBottomRightRadius: CORE_THEME.borderRadius,
   },
   label: {
     marginHorizontal: 20,
@@ -146,4 +148,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default Card;
+export default TopCard;

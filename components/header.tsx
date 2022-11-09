@@ -1,8 +1,12 @@
 import React from "react";
-import { View, Text, Image, StyleSheet, Button } from "react-native";
+import { View, Text, Image, StyleSheet } from "react-native";
 import files from "../constants/files";
 
-const Header = (props) => {
+type Props = {
+  title: string;
+}
+
+const Header: React.FC<Props> = (props: Props) => {
   return (
     <View style={styles.container}>
       <View style={styles.titleView}>
@@ -24,7 +28,6 @@ const styles = StyleSheet.create({
   },
   title: {
     fontSize: 20,
-    fontFamily: "Montserrat",
   },
   titleView: {
     paddingLeft: 10,

@@ -1,48 +1,46 @@
 import React, { useState, useEffect } from "react";
-import { StatusBar } from "expo-status-bar";
 import {
   Keyboard,
   StyleSheet,
-  Text,
   View,
-  Button,
   TouchableWithoutFeedback,
   ScrollView,
 } from "react-native";
 
-import Header from "./components/header";
-import Card from "./components/topCard";
-import MiddleCard from "./components/middleCard";
-import BottomCard from "./components/bottomCard";
+import Header from "./header";
+import TopCard from "./topCard";
+import MiddleCard from "./middleCard";
+import BottomCard from "./bottomCard";
 
-export default function App() {
-  const [totalWeight, setTotalWeight] = useState(1);
-  const [sheets, setSheets] = useState(0);
-  const [length, setLength] = useState(650);
-  const [width, setWidth] = useState(430);
-  const [gram, setGram] = useState(300);
-  const [selectedFormatId, setSelectedFormatId] = useState(1);
-  const [selectedSizeId, setSelectedSizeId] = useState(1);
+const HomeScreen: React.FC = () => {
+  const [totalWeight, setTotalWeight] = useState<number>(1);
+  const [sheets, setSheets] = useState<number>(0);
+  const [length, setLength] = useState<number>(650);
+  const [width, setWidth] = useState<number>(430);
+  const [gram, setGram] = useState<number>(300);
+  const [selectedFormatId, setSelectedFormatId] = useState<number>(1);
+  const [selectedSizeId, setSelectedSizeId] = useState<number>(1);
 
   const updateWeight = () => {
-    setTotalWeight(((length/1000) * (width/1000) * gram * sheets).toFixed(3));
+    setTotalWeight(
+      ((length / 1000) * (width / 1000) * gram * sheets).toFixed(3)
+    );
   };
 
   const handleOnSizePress = (props) => {
     setLength(props["dimension"]["length"]);
     setWidth(props["dimension"]["width"]);
   };
-  const handleOnQuantityChange = (props) => {
-    setSheets(props);
+  const handleOnQuantityChange = (sheets: number) => {
+    setSheets(sheets);
   };
-
   useEffect(updateWeight);
   return (
     <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
       <ScrollView>
         <View style={styles.container}>
           <Header title="Paper Calculator" />
-          <Card
+          <TopCard
             weight={totalWeight}
             onChangeQuantity={handleOnQuantityChange}
           />
@@ -68,10 +66,12 @@ export default function App() {
       </ScrollView>
     </TouchableWithoutFeedback>
   );
-}
+};
 
 const styles = StyleSheet.create({
   container: {
     justifyContent: "center",
   },
 });
+
+export default HomeScreen;

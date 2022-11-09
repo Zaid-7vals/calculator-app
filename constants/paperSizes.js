@@ -1,4 +1,4 @@
-const PAPERSIZES = [
+const PAPER_SIZES = [
     {
         key: 1,
         label: "A2",
@@ -60,4 +60,4 @@ const PAPERSIZES = [
     
 ]
 
-export default PAPERSIZES;
+export default PAPER_SIZES;
