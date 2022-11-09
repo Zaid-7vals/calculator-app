@@ -1,22 +1,21 @@
 import React, { useState, useEffect } from "react";
-import { StatusBar } from "expo-status-bar";
 import {
-  Keyboard,
-  StyleSheet,
-  Text,
-  View,
-  Button,
-  TouchableWithoutFeedback,
-  ScrollView,
-} from "react-native";
+    Keyboard,
+    StyleSheet,
+    Text,
+    View,
+    Button,
+    TouchableWithoutFeedback,
+    ScrollView,
+  } from "react-native";
+  
+  import Header from "./header";
+  import Card from "./card";
+  import MiddleCard from "./middleCard";
+  import BottomCard from "./bottomCard";
 
-import Header from "./components/header";
-import Card from "./components/card";
-import MiddleCard from "./components/middleCard";
-import BottomCard from "./components/bottomCard";
-
-export default function App() {
-  const [totalWeight, setTotalWeight] = useState(1);
+const HomeScreen = props => {
+    const [totalWeight, setTotalWeight] = useState(1);
   const [sheets, setSheets] = useState(0);
   const [length, setLength] = useState(650);
   const [width, setWidth] = useState(430);
@@ -35,9 +34,8 @@ export default function App() {
   const handleOnQuantityChange = (props) => {
     setSheets(props);
   };
-
   useEffect(updateWeight);
-  return (
+return(
     <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
       <ScrollView>
         <View style={styles.container}>
@@ -67,11 +65,13 @@ export default function App() {
         </View>
       </ScrollView>
     </TouchableWithoutFeedback>
-  );
+);
 }
 
 const styles = StyleSheet.create({
-  container: {
-    justifyContent: "center",
-  },
+    container: {
+        justifyContent: "center",
+      },
 });
+
+export default HomeScreen;

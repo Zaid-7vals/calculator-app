@@ -4,7 +4,7 @@ import Slider from "@react-native-community/slider";
 
 import files from "../constants/files";
 import style from "../constants/style";
-import PaperSlider from "./PaperSlider";
+import PaperSlider from "./paperSlider";
 
 const BottomCard = (props) => {
   const [length, setLength] = useState(50);

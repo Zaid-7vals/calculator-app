@@ -14,13 +14,13 @@ import { Chip, Button, withTheme, lightColors } from "@rneui/themed";
 
 import files from "../constants/files";
 import style from "../constants/style";
-import PAPERSIZES from "../constants/paperSizes";
-import PAPERFORMATS from "../constants/paperFormats";
+import PAPER_SIZES from "../constants/paperSizes";
+import PAPER_FORMATS from "../constants/paperFormats";
 import { TouchableHighlight } from "react-native-web";
 
 const Card = (props) => {
-  const paperFormats = PAPERFORMATS;
-  const paperSizes = PAPERSIZES;
+  const paperFormats = PAPER_FORMATS;
+  const paperSizes = PAPER_SIZES;
 
   const handleOnButtonSelect = (props) => {
     if (selected == false) {
@@ -109,7 +109,6 @@ const styles = StyleSheet.create({
     borderBottomRightRadius: 10,
   },
   button: {
-    fontFamily: "Montserrat_400Regular",
     height: 15,
   },
 
