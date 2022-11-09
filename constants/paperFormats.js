@@ -1,4 +1,4 @@
-const PAPERFORMATS = [
+const PAPER_FORMATS = [
   {
     key: 1,
     label: "DIN A",
@@ -40,7 +40,7 @@ const PAPERFORMATS = [
     label: "Custom",
     weight: 555,
     selected: false
-  }
+  },
 ];
 
-export default PAPERFORMATS;
+export default PAPER_FORMATS;

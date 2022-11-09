@@ -9,6 +9,7 @@ import TabNavigation from './screens/TabNavigation';
 import SampleScreen2 from './screens/SampleScreen2';
 const Stack = createNativeStackNavigator();
 
+
 export default function App() {
   return (
     <NavigationContainer>
