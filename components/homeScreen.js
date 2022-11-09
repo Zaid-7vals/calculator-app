@@ -1,21 +1,19 @@
 import React, { useState, useEffect } from "react";
 import {
-    Keyboard,
-    StyleSheet,
-    Text,
-    View,
-    Button,
-    TouchableWithoutFeedback,
-    ScrollView,
-  } from "react-native";
-  
-  import Header from "./header";
-  import Card from "./card";
-  import MiddleCard from "./middleCard";
-  import BottomCard from "./bottomCard";
+  Keyboard,
+  StyleSheet,
+  View,
+  TouchableWithoutFeedback,
+  ScrollView,
+} from "react-native";
 
-const HomeScreen = props => {
-    const [totalWeight, setTotalWeight] = useState(1);
+import Header from "./header";
+import Card from "./card";
+import MiddleCard from "./middleCard";
+import BottomCard from "./bottomCard";
+
+const HomeScreen = (props) => {
+  const [totalWeight, setTotalWeight] = useState(1);
   const [sheets, setSheets] = useState(0);
   const [length, setLength] = useState(650);
   const [width, setWidth] = useState(430);
@@ -24,7 +22,9 @@ const HomeScreen = props => {
   const [selectedSizeId, setSelectedSizeId] = useState(1);
 
   const updateWeight = () => {
-    setTotalWeight(((length/1000) * (width/1000) * gram * sheets).toFixed(3));
+    setTotalWeight(
+      ((length / 1000) * (width / 1000) * gram * sheets).toFixed(3)
+    );
   };
 
   const handleOnSizePress = (props) => {
@@ -35,7 +35,7 @@ const HomeScreen = props => {
     setSheets(props);
   };
   useEffect(updateWeight);
-return(
+  return (
     <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
       <ScrollView>
         <View style={styles.container}>
@@ -65,13 +65,13 @@ return(
         </View>
       </ScrollView>
     </TouchableWithoutFeedback>
-);
-}
+  );
+};
 
 const styles = StyleSheet.create({
-    container: {
-        justifyContent: "center",
-      },
+  container: {
+    justifyContent: "center",
+  },
 });
 
 export default HomeScreen;

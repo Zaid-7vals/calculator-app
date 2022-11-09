@@ -1,5 +1,5 @@
 import React from "react";
-import { View, Text, Image, StyleSheet, Button } from "react-native";
+import { View, Text, Image, StyleSheet } from "react-native";
 import files from "../constants/files";
 
 const Header = (props) => {
@@ -24,7 +24,6 @@ const styles = StyleSheet.create({
   },
   title: {
     fontSize: 20,
-  
   },
   titleView: {
     paddingLeft: 10,

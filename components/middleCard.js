@@ -1,32 +1,15 @@
-import React, { useState } from "react";
-import {
-  View,
-  Text,
-  StyleSheet,
-  FlatList,
-  Image,
-  TouchableOpacity,
-  TextInput,
-  Keyboard,
-} from "react-native";
+import React from "react";
+import { View, StyleSheet, FlatList } from "react-native";
 
-import { Chip, Button, withTheme, lightColors } from "@rneui/themed";
+import { Chip, Button } from "@rneui/themed";
 
-import files from "../constants/files";
 import style from "../constants/style";
 import PAPER_SIZES from "../constants/paperSizes";
 import PAPER_FORMATS from "../constants/paperFormats";
-import { TouchableHighlight } from "react-native-web";
 
 const Card = (props) => {
   const paperFormats = PAPER_FORMATS;
   const paperSizes = PAPER_SIZES;
-
-  const handleOnButtonSelect = (props) => {
-    if (selected == false) {
-    }
-  };
-  const removeSelectedButton = (props) => {};
 
   const renderPaperSize = ({ item }) => (
     <Button

@@ -1,8 +1,6 @@
 import React, { useState } from "react";
-import { View, Text, StyleSheet, Button } from "react-native";
-import Slider from "@react-native-community/slider";
+import { View, StyleSheet } from "react-native";
 
-import files from "../constants/files";
 import style from "../constants/style";
 import PaperSlider from "./paperSlider";
 
