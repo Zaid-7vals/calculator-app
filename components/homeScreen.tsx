@@ -13,7 +13,7 @@ import MiddleCard from "./middleCard";
 import BottomCard from "./bottomCard";
 
 const HomeScreen: React.FC = () => {
-  const [totalWeight, setTotalWeight] = useState<number>(1);
+  const [totalWeight, setTotalWeight] = useState<string>("1");
   const [sheets, setSheets] = useState<number>(0);
   const [length, setLength] = useState<number>(650);
   const [width, setWidth] = useState<number>(430);
