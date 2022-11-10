@@ -14,7 +14,12 @@ import style from "../constants/style";
 import CORE_THEME from "../constants/coreTheme";
 import CORE_COLORS from "../constants/coreColors";
 
-const TopCard = (props) => {
+type Props = {
+  weight: string;
+  onChangeQuantity: (numberOfSheets: number)=>void;
+}
+
+const TopCard: React.FC<Props> = (props) => {
   const [sheets, setSheets] = useState(0);
   const [sheetIcon, setSheetIcon] = useState(files.images.sheet1);
 

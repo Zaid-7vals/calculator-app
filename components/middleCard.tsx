@@ -9,7 +9,16 @@ import PAPER_FORMATS from "../constants/paperFormats";
 import CORE_THEME from "../constants/coreTheme";
 import CORE_COLORS from "../constants/coreColors";
 
-const Card = (props) => {
+type Props = {
+  onChangeSize: (item)=>any;
+  onSizePress: (item)=>any; //this item has to have a type of PAPER_SIZE array object
+  selectedSize: number;
+  onChangeFormat: (weight: number)=>any;
+  onFormatPress: (key: number)=>any;
+  selectedFormat: number;
+}
+
+const Card: React.FC<Props> = (props: Props) => {
   const paperFormats = PAPER_FORMATS;
   const paperSizes = PAPER_SIZES;
 

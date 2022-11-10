@@ -3,7 +3,7 @@ import * as React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
-import HomeScreen from './components/HomeScreen';
+import HomeScreen from './components/homeScreen';
 import MainScreen from './screens/MainScreen';
 import TabNavigation from './screens/TabNavigation';
 import SampleScreen2 from './screens/SampleScreen2';

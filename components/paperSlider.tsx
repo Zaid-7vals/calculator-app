@@ -2,11 +2,20 @@ import { View, Text, StyleSheet, TextInput } from "react-native";
 import React from "react";
 import Slider from "@react-native-community/slider";
 
-
 import files from "../constants/files";
 import style from "../constants/style";
 
-const PaperSlider = (props) => {
+type Props = {
+  label: string;
+  unit: string;
+  value: number;
+  valueForChip: number;
+  onButtonChange: (id: number) => void;
+  onChangeValue: (value: number) => void;
+  changeValue: (value: number) => void;
+};
+
+const PaperSlider: React.FC<Props> = (props: Props) => {
   return (
     <View style={styles.container}>
       <View style={styles.labelContainer}>
@@ -26,7 +35,7 @@ const PaperSlider = (props) => {
       </View>
 
       <Slider
-        style={styles.slider}
+        
         minimumValue={10}
         maximumValue={1000}
         minimumTrackTintColor={style.systemBlueAccent}
