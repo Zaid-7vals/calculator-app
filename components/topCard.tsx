@@ -9,6 +9,8 @@ import {
   Keyboard,
 } from "react-native";
 
+import { useSelector, useDispatch } from "react-redux";
+
 import files from "../constants/files";
 import style from "../constants/style";
 import CORE_THEME from "../constants/coreTheme";
@@ -20,7 +22,8 @@ type Props = {
 }
 
 const TopCard: React.FC<Props> = (props) => {
-  const [sheets, setSheets] = useState(0);
+  const sheets =  useSelector(state => state.numberOfSheets);
+  const dispatch = useDispatch();
   const [sheetIcon, setSheetIcon] = useState(files.images.sheet1);
 
   const updateSheetIconHandler = () => {
@@ -36,22 +39,26 @@ const TopCard: React.FC<Props> = (props) => {
     props.onChangeQuantity(sheets);
   };
   useEffect(updateSheetIconHandler);
+  
   const incrementSheetHandler = () => {
-    setSheets(sheets + 1);
+    dispatch({ type: 'increment' })
     Keyboard.dismiss();
   };
+  
   const decrementSheetHandler = () => {
     if (sheets <= 0) {
       return;
     }
-    setSheets(sheets - 1);
+    dispatch({ type: 'decrement' });
     Keyboard.dismiss();
   };
+
   const changeSheetCountHandler = (sheetString) => {
+       
     if (sheetString !== "") {
-      setSheets(parseInt(sheetString, 10));
+      dispatch({ type: 'updateSheetsCount', numberOfSheets: (parseInt(sheetString, 10))});
     } else {
-      setSheets(0);
+      dispatch({ type: 'updateSheetsCount', numberOfSheets: 0});
     }
   };
 

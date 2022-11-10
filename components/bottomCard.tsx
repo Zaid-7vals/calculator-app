@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import { View, StyleSheet } from "react-native";
+import { useSelector, useDispatch } from "react-redux";
 import CORE_COLORS from "../constants/coreColors";
 import CORE_THEME from "../constants/coreTheme";
-
 import style from "../constants/style";
 import PaperSlider from "./paperSlider";
 
@@ -20,16 +20,21 @@ type Props = {
 const BottomCard: React.FC<Props> = (props: Props) => {
   const [length, setLength] = useState(50);
   const [width, setWidth] = useState(50);
-  const [gram, setGram] = useState(50);
+
+  const gram =  useSelector(state => state.gram);
+  const selectedFormatID =  useSelector(state => state.selectedFormatID);
+
+  const dispatch = useDispatch();
+
   //These 3 states are used to update value inside chip on each value change.
   return (
     <View style={styles.container}>
       <View style={styles.innerContainer}>
         <PaperSlider
-          value={props.gram}
+          value={gram}
           valueForChip={gram}
           label="Gram"
-          changeValue={setGram}
+          //changeValue={dispatch({ type: 'formatButtonPress', weight: value})}
           onChangeValue={props.onChangeGrammage}
           unit="grams"
           onButtonChange={props.onFormatPress}
