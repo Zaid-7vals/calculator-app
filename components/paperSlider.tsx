@@ -1,7 +1,7 @@
 import { View, Text, StyleSheet, TextInput } from "react-native";
 import React from "react";
 import Slider from "@react-native-community/slider";
-
+import { useSelector, useDispatch } from "react-redux";
 import files from "../constants/files";
 import style from "../constants/style";
 
@@ -16,6 +16,8 @@ type Props = {
 };
 
 const PaperSlider: React.FC<Props> = (props: Props) => {
+  const dispatch = useDispatch();
+
   return (
     <View style={styles.container}>
       <View style={styles.labelContainer}>
@@ -43,11 +45,11 @@ const PaperSlider: React.FC<Props> = (props: Props) => {
         thumbImage={files.images.thumbImage} //ThumbImage not being reflected on AppReload
         value={props.value}
         onValueChange={(value) => {
-          props.changeValue(parseInt(value));
+          dispatch({ type: 'formatButtonPress', weight: parseInt(value)});
         }}
-        onSlidingComplete={(value) => {
-          props.onChangeValue(parseInt(value));
-        }}
+        // onSlidingComplete={(value) => {
+        //   props.onChangeValue(parseInt(value));
+        // }}
         onSlidingStart={(value) => {
           props.onButtonChange(
             props.unit === "grams"

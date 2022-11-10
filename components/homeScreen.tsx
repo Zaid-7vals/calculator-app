@@ -6,6 +6,7 @@ import {
   TouchableWithoutFeedback,
   ScrollView,
 } from "react-native";
+import { useSelector } from "react-redux";
 
 import Header from "./header";
 import TopCard from "./topCard";

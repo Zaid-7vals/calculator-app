@@ -1,5 +1,6 @@
 import React from "react";
 import { View, StyleSheet, FlatList } from "react-native";
+import { useSelector, useDispatch } from "react-redux";
 
 import { Chip, Button } from "@rneui/themed";
 
@@ -10,15 +11,20 @@ import CORE_THEME from "../constants/coreTheme";
 import CORE_COLORS from "../constants/coreColors";
 
 type Props = {
-  onChangeSize: (item)=>any;
-  onSizePress: (item)=>any; //this item has to have a type of PAPER_SIZE array object
+  onChangeSize: (item) => any;
+  onSizePress: (item) => any; //this item has to have a type of PAPER_SIZE array object
   selectedSize: number;
-  onChangeFormat: (weight: number)=>any;
-  onFormatPress: (key: number)=>any;
+  onChangeFormat: (weight: number) => any;
+  onFormatPress: (key: number) => any;
   selectedFormat: number;
-}
+};
 
 const Card: React.FC<Props> = (props: Props) => {
+  const selectedSizeID =  useSelector(state => state.selectedSizeID);
+  const selectedFormatID =  useSelector(state => state.selectedFormatID);
+
+  const dispatch = useDispatch();
+
   const paperFormats = PAPER_FORMATS;
   const paperSizes = PAPER_SIZES;
 
@@ -26,12 +32,13 @@ const Card: React.FC<Props> = (props: Props) => {
     <Button
       title={item["label"]}
       onPress={() => {
+        //dispatch({ type: 'increment' })
         props.onChangeSize(item);
         props.onSizePress(item["key"]);
       }}
       buttonStyle={styles.sizeButton}
       titleStyle={
-        item["key"] === props.selectedSize
+        item["key"] === selectedSizeID
           ? styles.selectedButtonText
           : styles.buttonText
       }
@@ -46,16 +53,15 @@ const Card: React.FC<Props> = (props: Props) => {
             title={value["label"]}
             containerStyle={styles.chip}
             onPress={() => {
-              props.onChangeFormat(value["weight"]);
-              props.onFormatPress(value["key"]);
+              dispatch({ type: 'formatButtonPress', weight: value["weight"], formatButtonID: value["key"] });
             }}
             buttonStyle={
-              value["key"] === props.selectedFormat
+              value["key"] === selectedFormatID
                 ? styles.selectedChip
                 : styles.chip
             }
             titleStyle={
-              value["key"] === props.selectedFormat
+              value["key"] === selectedFormatID
                 ? styles.selectedChipText
                 : styles.chipText
             }
